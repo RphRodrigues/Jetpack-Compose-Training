@@ -1,17 +1,28 @@
 package br.com.rstduio.composetraining
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.ElevatedButton
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExpandLess
+import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -21,6 +32,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.rstduio.composetraining.ui.theme.ComposeTrainingTheme
@@ -72,40 +86,76 @@ private fun Greetings(
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-  var isExpanded by rememberSaveable { mutableStateOf(false) }
-  var paddingExpanded = if (!isExpanded) 0.dp else 48.dp
-
-  Surface(
-    color = MaterialTheme.colorScheme.primary,
-    modifier = modifier
-      .padding(horizontal = 8.dp, vertical = 4.dp)
+  Card(
+    colors = CardDefaults.cardColors(
+      containerColor = MaterialTheme.colorScheme.secondary
+    ),
+    modifier = modifier.padding(vertical = 4.dp, horizontal = 8.dp)
   ) {
-    Row(
-      modifier = Modifier.padding(24.dp)
+    CardContent(name)
+  }
+}
+
+@Composable
+fun CardContent(name: String) {
+  var isExpanded by rememberSaveable { mutableStateOf(false) }
+
+  Row(
+    modifier = Modifier
+      .padding(12.dp)
+      .background(Color.Red)
+      .animateContentSize(
+        animationSpec = spring(
+          dampingRatio = Spring.DampingRatioMediumBouncy,
+          stiffness = Spring.StiffnessLow
+        )
+      )
+  ) {
+    Column(
+      modifier = Modifier
+        .background(Color.Black)
+        .weight(1f)
+        .padding(12.dp)
     ) {
-      Column(
-        modifier = Modifier
-          .weight(1f)
-          .padding(bottom = paddingExpanded)
-      ) {
-        Text(text = "Hello ")
-        Text(text = name)
-      }
-      ElevatedButton(
-        onClick = {
-          isExpanded = !isExpanded
-          Log.d("rtudio", "onClick ${isExpanded}")
-        }
-      ) {
+      Text(text = "Hello")
+      Text(
+        text = name,
+        style = MaterialTheme.typography.headlineMedium.copy(
+          fontWeight = FontWeight.ExtraBold
+        )
+      )
+      if (isExpanded) {
         Text(
-          text = if (!isExpanded) "Show more" else "Show less"
+          text = ("Composem ipsum color sit lazy, " +
+              "padding theme elit, sed do bouncy. ").repeat(4)
         )
       }
+    }
+    IconButton(
+      modifier = Modifier.padding(10.dp),
+      onClick = {
+        isExpanded = !isExpanded
+        Log.d("rtudio", "onClick $isExpanded")
+      }
+    ) {
+      Icon(
+        imageVector = if (!isExpanded) Icons.Filled.ExpandMore else Icons.Filled.ExpandLess,
+        contentDescription = if (!isExpanded) {
+          stringResource(R.string.show_less)
+        } else {
+          stringResource(R.string.show_more)
+        }
+      )
     }
   }
 }
 
-@Preview(showBackground = true, widthDp = 320)
+@Preview(
+  showBackground = true,
+  widthDp = 320,
+  uiMode = UI_MODE_NIGHT_YES,
+  name = "GreetingPreviewDark"
+)
 @Composable
 fun GreetingsPreview() {
   ComposeTrainingTheme {
@@ -113,65 +163,9 @@ fun GreetingsPreview() {
   }
 }
 
-@Preview(showBackground = true, heightDp = 320, widthDp = 320)
-@Composable
-fun MyAppPreview() {
-  ComposeTrainingTheme {
-    MyApp(Modifier.fillMaxSize())
-  }
-}
-
-//@Composable
-//fun Greeting(name: String, modifier: Modifier) {
-//  Surface(
-//    color = MaterialTheme.colorScheme.primary,
-//    modifier = modifier
-//      .padding(horizontal = 8.dp, vertical = 4.dp)
-//  ) {
-//    Box(
-//      contentAlignment = Alignment.CenterEnd
-//    ) {
-//      Column(
-//        modifier = modifier
-//          .fillMaxWidth()
-//          .padding(24.dp)
-//      ) {
-//        Text(text = "Hello")
-//        Text(text = name)
-//      }
-//      ElevatedButton(
-//        onClick = { },
-//        colors = ButtonDefaults.buttonColors(
-//          containerColor = MaterialTheme.colorScheme.inversePrimary
-//        ),
-//        modifier = modifier
-//          .padding(end = 24.dp)
-//      ) {
-//        Text(
-//          text = "Show more",
-//          color = MaterialTheme.colorScheme.primary
-//        )
-//      }
-//    }
-//  }
-//}
-
 /*
 * MutableState
 * mutableStateOf
 * remember - guarantees that compose will remembered the value when composable recomposes
 * rememberSaveable - to remember changes across the configuration changes, use it with by keyword
-*
 * */
-
-//@Composable
-//fun AddText(text: String, modifier: Modifier) {
-//  Text(
-//    text = text,
-//    color = Color.Black,
-//    fontSize = 20.sp,
-//    fontWeight = FontWeight.Bold,
-//    modifier = modifier
-//      .background(color = Color.Yellow)
-//  )
-//}
