@@ -1,6 +1,9 @@
-package br.com.rstduio.composetraining
+package br.com.rstudio.codelab2.app
 
+import android.app.ActivityManager
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -13,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.rstudio.designsystem.ui.theme.DesignSystemTheme
 
-class MainActivity : ComponentActivity() {
+class Codelab2Activity : ComponentActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -28,6 +31,19 @@ class MainActivity : ComponentActivity() {
         }
       }
     }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+    val memoryInfo = ActivityManager.MemoryInfo()
+    activityManager.getMemoryInfo(memoryInfo)
+
+    Log.d("MemoryInfo", "Available Memory: ${memoryInfo.availMem / (1024 * 1024)} MB")
+    Log.d("MemoryInfo", "Total Memory: ${memoryInfo.totalMem / (1024 * 1024)} MB")
+    Log.d("MemoryInfo", "Low Memory: ${memoryInfo.lowMemory}")
+    Log.d("MemoryInfo", "Threshold: ${memoryInfo.threshold / (1024 * 1024)} MB")
+    Log.d("MemoryInfo", "isLowRamDevice: ${activityManager.isLowRamDevice}")
   }
 }
 

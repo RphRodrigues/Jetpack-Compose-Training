@@ -1,4 +1,4 @@
-package br.com.rstduio.composetraining.ui.theme
+package br.com.rstudio.designsystem.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

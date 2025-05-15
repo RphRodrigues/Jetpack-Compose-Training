@@ -21,4 +21,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "Compose Training"
 include(":app")
- 
+include(":codelab1")
+include(":codelab1:app")
+include(":codelab2")
+include(":codelab2:app")
+include(":designSystem")
