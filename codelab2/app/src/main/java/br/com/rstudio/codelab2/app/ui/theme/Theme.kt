@@ -1,4 +1,4 @@
-package br.com.rstudio.designsystem.ui.theme
+package br.com.rstudio.codelab2.app.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
