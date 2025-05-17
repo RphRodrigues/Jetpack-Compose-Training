@@ -48,6 +48,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
@@ -58,7 +59,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import br.com.rstudio.codelab2.app.ui.theme.DesignSystemTheme
 
@@ -70,10 +70,8 @@ class Codelab2Activity : ComponentActivity() {
     enableEdgeToEdge()
     setContent {
       DesignSystemTheme {
-        when (calculateWindowSizeClass(this).widthSizeClass) {
-          WindowWidthSizeClass.Compact -> MyAppPortrait()
-          else -> MyAppLandscape()
-        }
+        val size: WindowSizeClass = calculateWindowSizeClass(this)
+        SelectScreenBy(size.widthSizeClass)
       }
     }
   }
@@ -89,6 +87,14 @@ class Codelab2Activity : ComponentActivity() {
     Log.d("MemoryInfo", "Low Memory: ${memoryInfo.lowMemory}")
     Log.d("MemoryInfo", "Threshold: ${memoryInfo.threshold / (1024 * 1024)} MB")
     Log.d("MemoryInfo", "isLowRamDevice: ${activityManager.isLowRamDevice}")
+  }
+}
+
+@Composable
+fun SelectScreenBy(size: WindowWidthSizeClass) {
+  when (size) {
+    WindowWidthSizeClass.Compact -> MyAppPortrait()
+    else -> MyAppLandscape()
   }
 }
 
@@ -159,13 +165,14 @@ fun MyApp(modifier: Modifier = Modifier) {
         contentPadding = PaddingValues(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
-        modifier = modifier.height(168.dp)
+        modifier = modifier
+          .height(168.dp)
+          .padding(bottom = 20.dp)
       ) {
         items(favoriteCollectionItems) { item ->
           FavoriteCollectionCard(item.first, item.second)
         }
       }
-//      Spacer(modifier.height(20.dp))
     }
   }
 }
@@ -348,14 +355,12 @@ fun FavoriteCollectionCard(
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
-@PreviewScreenSizes
 @Composable
 fun GreetingPreview() {
   DesignSystemTheme {
-    MyAppPortrait()
+    SelectScreenBy(WindowWidthSizeClass.Compact)
   }
 }
-
 
 /*
 * Os modificadores são usados para:
