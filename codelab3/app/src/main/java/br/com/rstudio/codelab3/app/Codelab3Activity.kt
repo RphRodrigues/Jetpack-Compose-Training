@@ -5,13 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.rstudio.codelab3.app.ui.theme.ComposeTrainingTheme
+import br.com.rstudio.codelab3.app.ui.wellness.WellnessScreen
 
 class Codelab3Activity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,29 +19,21 @@ class Codelab3Activity : ComponentActivity() {
     enableEdgeToEdge()
     setContent {
       ComposeTrainingTheme {
-        Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-          Greeting(
-            name = "Android",
-            modifier = Modifier.padding(innerPadding)
-          )
+        Surface(
+          modifier = Modifier.fillMaxSize(),
+          color = MaterialTheme.colorScheme.background
+        ) {
+          WellnessScreen()
         }
       }
     }
   }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-  Text(
-    text = "Hello $name!",
-    modifier = modifier
-  )
-}
-
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
   ComposeTrainingTheme {
-    Greeting("Android")
+    WellnessScreen()
   }
 }
