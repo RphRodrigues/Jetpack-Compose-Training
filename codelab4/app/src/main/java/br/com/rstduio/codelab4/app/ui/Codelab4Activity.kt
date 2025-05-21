@@ -28,8 +28,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.rstduio.codelab4.app.data.LocalEmailsDataProvider
 
-
-class MainActivity : ComponentActivity() {
+class Codelab4Activity : ComponentActivity() {
 
     private val viewModel: ReplyHomeViewModel by viewModels()
 

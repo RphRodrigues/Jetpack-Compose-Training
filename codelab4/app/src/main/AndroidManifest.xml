@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ComposeTraining">
         <activity
-            android:name=".Codelab4Activity"
+            android:name=".ui.Codelab4Activity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.ComposeTraining">
