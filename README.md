@@ -11,8 +11,6 @@ The project is organized into several modules:
 *   `:codelab3:app`: State in Jetpack Compose
 *   `:codelab4:app`: Theming in Compose with Material 3
 
-*(You can add a brief description for each codelab module if you like, e.g., "Codelab 1: Focuses on basic layouts and state.")*
-
 ## Purpose
 
 *   To learn and understand the fundamentals of Jetpack Compose.
@@ -58,7 +56,7 @@ The project is organized into several modules:
 *   [Android Gradle Plugin](https://developer.android.com/studio/releases/gradle-plugin)
 *   [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
 
-## Further Learning / Codelabs Followed (Optional)
+## Further Learning / Codelabs Followed
 
 *   If this project follows specific Google Codelabs, you can link to them here.
     *   Example: [Jetpack Compose Courses](https://developer.android.com/courses/jetpack-compose/course)
