@@ -1,4 +1,4 @@
-package br.com.rstudio.codelab1.app
+package br.com.rstudio.codelab1.feature
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import br.com.rstudio.codelab1.app.ui.theme.ComposeTrainingTheme
+import br.com.rstudio.designsystem.ui.theme.DesignSystemTheme
 
 @Composable
 fun OnboardingScreen(
@@ -37,7 +37,7 @@ fun OnboardingScreen(
 @Preview(showBackground = true, heightDp = 320, widthDp = 320)
 @Composable
 fun OnboardingScreenPreview() {
-  ComposeTrainingTheme {
+  DesignSystemTheme {
     OnboardingScreen(onContinueClick = { })
   }
 }

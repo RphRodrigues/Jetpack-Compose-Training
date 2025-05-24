@@ -41,6 +41,7 @@ android {
 dependencies {
 
   implementation(project(":designSystem"))
+  implementation(project(":codelab1:feature"))
 
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.lifecycle.runtime.ktx)

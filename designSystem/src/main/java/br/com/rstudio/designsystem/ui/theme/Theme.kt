@@ -1,6 +1,7 @@
 package br.com.rstudio.designsystem.ui.theme
 
 import android.os.Build
+import android.util.Log
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
@@ -55,10 +56,13 @@ fun DesignSystemTheme(
   content: @Composable () -> Unit
 ) {
   val colorScheme = when {
-//    dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-//      val context = LocalContext.current
-//      if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-//    }
+    dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+      val context = LocalContext.current
+
+      Log.d("Thainan", "passou aqui")
+
+      if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+    }
 
     darkTheme -> DarkColorScheme
     else -> LightColorScheme

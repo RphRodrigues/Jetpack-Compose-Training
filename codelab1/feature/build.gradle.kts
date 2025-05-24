@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-  namespace = "br.com.rstudio.designsystem"
+  namespace = "br.com.rstudio.codelab1.feature"
   compileSdk = 35
 
   defaultConfig {
@@ -34,6 +34,10 @@ android {
 }
 
 dependencies {
+
+  implementation(project(":designSystem"))
+
+  implementation(libs.androidx.activity.compose)
   implementation(platform(libs.androidx.compose.bom))
   implementation(libs.androidx.ui)
   implementation(libs.androidx.ui.graphics)
@@ -46,7 +50,6 @@ dependencies {
   androidTestImplementation(libs.androidx.espresso.core)
   androidTestImplementation(platform(libs.androidx.compose.bom))
   androidTestImplementation(libs.androidx.ui.test.junit4)
-
   debugImplementation(libs.androidx.ui.tooling)
   debugImplementation(libs.androidx.ui.test.manifest)
 }
