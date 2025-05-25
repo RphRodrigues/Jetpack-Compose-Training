@@ -1,12 +1,12 @@
-package br.com.rstudio.codelab3.app.ui.wellness
+package br.com.rstudio.codelab3.feature.ui.wellness
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import br.com.rstudio.codelab3.app.data.WellnessTask
-import br.com.rstudio.codelab3.app.ui.theme.ComposeTrainingTheme
+import br.com.rstudio.codelab3.feature.data.WellnessTask
+import br.com.rstudio.designsystem.ui.theme.DesignSystemTheme
 
 @Composable
 fun WellnessTasksList(
@@ -36,7 +36,7 @@ fun WellnessTasksList(
 @Preview(showBackground = true)
 @Composable
 fun WellnessTasksListPreview() {
-  ComposeTrainingTheme {
+  DesignSystemTheme {
     WellnessTasksList(
       list = getWellnessTasksList(),
       onCloseTask = {},

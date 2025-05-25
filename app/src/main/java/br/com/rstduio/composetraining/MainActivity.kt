@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.rstudio.codelab1.feature.Codelab1Feature
 import br.com.rstudio.codelab2.feature.Codelab2Feature
+import br.com.rstudio.codelab3.feature.ui.wellness.Codelab3Feature
 import br.com.rstudio.designsystem.ui.theme.DesignSystemTheme
 
 class MainActivity : ComponentActivity() {
@@ -76,6 +77,11 @@ fun ComposeTraining(
       modifier = modifier
     )
 
+    MainState.Codelab3 -> Codelab3Feature(
+      closeCodelab3 = {
+        navigateTo(MainState.Home)
+      }
+    )
     else -> {
       Column(
         modifier = modifier
@@ -84,7 +90,7 @@ fun ComposeTraining(
       ) {
         ListItem("Codelab 1", { navigateTo(MainState.Codelab1) })
         ListItem("Codelab 2", { navigateTo(MainState.Codelab2) })
-        ListItem("Codelab 3", { navigateTo(MainState.Home) })
+        ListItem("Codelab 3", { navigateTo(MainState.Codelab3) })
         ListItem("Codelab 4", { navigateTo(MainState.Home) })
       }
     }
@@ -117,6 +123,6 @@ fun GreetingPreview() {
     val expandedWindowSize = WindowSizeClass.calculateFromSize(
       size = androidx.compose.ui.unit.DpSize(400.dp, 1280.dp)
     )
-    ComposeTraining(size = expandedWindowSize, uiState = MainState.Codelab1)
+    ComposeTraining(size = expandedWindowSize, uiState = MainState.Codelab3)
   }
 }

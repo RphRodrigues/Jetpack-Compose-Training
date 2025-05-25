@@ -1,8 +1,8 @@
-package br.com.rstudio.codelab3.app.ui.wellness
+package br.com.rstudio.codelab3.feature.ui.wellness
 
 import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.ViewModel
-import br.com.rstudio.codelab3.app.data.WellnessTask
+import br.com.rstudio.codelab3.feature.data.WellnessTask
 
 fun getWellnessTasksList(): List<WellnessTask> {
   return List(30) { i -> WellnessTask(id = i, label = "Task #$i") }

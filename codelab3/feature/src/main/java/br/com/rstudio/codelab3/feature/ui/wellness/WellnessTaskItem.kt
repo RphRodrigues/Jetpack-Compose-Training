@@ -1,4 +1,4 @@
-package br.com.rstudio.codelab3.app.ui.wellness
+package br.com.rstudio.codelab3.feature.ui.wellness
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -18,8 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import br.com.rstudio.codelab3.app.R
-import br.com.rstudio.codelab3.app.ui.theme.ComposeTrainingTheme
+import br.com.rstudio.codelab3.feature.R
+import br.com.rstudio.designsystem.ui.theme.DesignSystemTheme
 
 @Composable
 fun StatefulWellnessTaskItem(
@@ -73,7 +73,7 @@ fun StatelessWellnessTaskItem(
 @Preview(showBackground = true)
 @Composable
 fun WellnessTaskPreview() {
-  ComposeTrainingTheme {
+  DesignSystemTheme {
     StatelessWellnessTaskItem(
       taskName = "This is a task",
       onCloseTask = {},

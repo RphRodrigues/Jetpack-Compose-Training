@@ -1,4 +1,4 @@
-package br.com.rstudio.codelab3.app.data
+package br.com.rstudio.codelab3.feature.data
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

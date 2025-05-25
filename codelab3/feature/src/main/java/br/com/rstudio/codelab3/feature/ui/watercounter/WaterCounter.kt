@@ -1,4 +1,4 @@
-package br.com.rstudio.codelab3.app.ui.watercounter
+package br.com.rstudio.codelab3.feature.ui.watercounter
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -12,7 +12,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import br.com.rstudio.codelab3.app.ui.theme.ComposeTrainingTheme
+import br.com.rstudio.designsystem.ui.theme.DesignSystemTheme
 
 @Composable
 fun StatefulWaterCounter(modifier: Modifier = Modifier) {
@@ -46,7 +46,7 @@ fun StatelessWaterCounter(
 @Preview(showBackground = true)
 @Composable
 fun WaterCounterPreview() {
-  ComposeTrainingTheme {
+  DesignSystemTheme {
     StatefulWaterCounter()
   }
 }

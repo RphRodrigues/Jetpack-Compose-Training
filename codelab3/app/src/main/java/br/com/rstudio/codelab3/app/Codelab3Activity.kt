@@ -10,20 +10,20 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import br.com.rstudio.codelab3.app.ui.theme.ComposeTrainingTheme
-import br.com.rstudio.codelab3.app.ui.wellness.WellnessScreen
+import br.com.rstudio.codelab3.feature.ui.wellness.Codelab3Feature
+import br.com.rstudio.designsystem.ui.theme.DesignSystemTheme
 
 class Codelab3Activity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     enableEdgeToEdge()
     setContent {
-      ComposeTrainingTheme {
+      DesignSystemTheme {
         Surface(
           modifier = Modifier.fillMaxSize(),
           color = MaterialTheme.colorScheme.background
         ) {
-          WellnessScreen()
+          Codelab3Feature()
         }
       }
     }
@@ -33,7 +33,7 @@ class Codelab3Activity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-  ComposeTrainingTheme {
-    WellnessScreen()
+  DesignSystemTheme {
+    Codelab3Feature()
   }
 }
