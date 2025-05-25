@@ -42,6 +42,7 @@ dependencies {
 
   implementation(project(":designSystem"))
   implementation(project(":codelab1:feature"))
+  implementation(project(":codelab2:feature"))
 
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -52,6 +53,7 @@ dependencies {
   implementation(libs.androidx.ui.tooling.preview)
   implementation(libs.androidx.material3)
   implementation(libs.androidx.material.icons.extended)
+  implementation(libs.androidx.material3.window.size.class1.android)
   testImplementation(libs.junit)
   androidTestImplementation(libs.androidx.junit)
   androidTestImplementation(libs.androidx.espresso.core)
