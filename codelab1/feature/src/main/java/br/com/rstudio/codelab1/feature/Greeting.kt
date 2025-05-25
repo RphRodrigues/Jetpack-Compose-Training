@@ -19,6 +19,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -40,16 +41,18 @@ fun Codelab1Feature(
 ) {
   var shouldShowOnboarding by rememberSaveable { mutableStateOf(true) }
 
-  Surface(modifier) {
-    BackHandler {
-      closeCodelab1()
-    }
-    if (shouldShowOnboarding) {
-      OnboardingScreen(
-        onContinueClick = { shouldShowOnboarding = false }
-      )
-    } else {
-      Greetings()
+  Scaffold { innerPadding ->
+    Surface(modifier.padding(innerPadding)) {
+      BackHandler {
+        closeCodelab1()
+      }
+      if (shouldShowOnboarding) {
+        OnboardingScreen(
+          onContinueClick = { shouldShowOnboarding = false }
+        )
+      } else {
+        Greetings()
+      }
     }
   }
 }

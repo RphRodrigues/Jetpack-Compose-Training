@@ -40,6 +40,7 @@ dependencies {
   implementation(libs.androidx.ui.tooling.preview)
   implementation(libs.androidx.material3)
   implementation(libs.androidx.material.icons.extended)
+  implementation("androidx.compose.ui:ui-text-google-fonts:1.7.0")
 
   testImplementation(libs.junit)
   androidTestImplementation(libs.androidx.junit)

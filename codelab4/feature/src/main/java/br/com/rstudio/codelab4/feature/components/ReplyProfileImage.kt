@@ -14,33 +14,28 @@
  * limitations under the License.
  */
 
-package br.com.rstduio.codelab4.app.ui
+package br.com.rstudio.codelab4.feature.components
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.PreviewLightDark
-import br.com.rstudio.codelab4.feature.Codelab4Feature
-import br.com.rstudio.designsystem.ui.theme.DesignSystemTheme
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 
-class Codelab4Activity : ComponentActivity() {
-
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-
-    setContent {
-      DesignSystemTheme {
-        Codelab4Feature()
-      }
-    }
-  }
-}
-
-@PreviewLightDark
 @Composable
-fun ReplyAppPreviewLight() {
-  DesignSystemTheme {
-    Codelab4Feature()
-  }
+fun ReplyProfileImage(
+    drawableResource: Int,
+    description: String,
+    modifier: Modifier = Modifier
+) {
+    Image(
+        modifier = modifier
+            .size(40.dp)
+            .clip(CircleShape),
+        painter = painterResource(id = drawableResource),
+        contentDescription = description,
+    )
 }

@@ -1,5 +1,6 @@
 package br.com.rstudio.codelab3.feature.ui.watercounter
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -16,10 +17,9 @@ import br.com.rstudio.designsystem.ui.theme.DesignSystemTheme
 
 @Composable
 fun StatefulWaterCounter(modifier: Modifier = Modifier) {
-  Column {
-    var count by rememberSaveable { mutableIntStateOf(0) }
-    StatelessWaterCounter(count, { count++ }, modifier)
-  }
+  var count by rememberSaveable { mutableIntStateOf(0) }
+
+  StatelessWaterCounter(count, { count++ }, modifier)
 }
 
 @Composable

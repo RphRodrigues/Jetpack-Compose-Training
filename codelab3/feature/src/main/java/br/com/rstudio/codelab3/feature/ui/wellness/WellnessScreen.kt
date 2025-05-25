@@ -2,6 +2,9 @@ package br.com.rstudio.codelab3.feature.ui.wellness
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -14,10 +17,12 @@ fun Codelab3Feature(
   modifier: Modifier = Modifier,
   closeCodelab3: () -> Unit = {}
 ) {
-  WellnessScreen(
-    closeCodelab3 = closeCodelab3,
-    modifier = modifier
-  )
+  Scaffold { innerPadding ->
+    WellnessScreen(
+      closeCodelab3 = closeCodelab3,
+      modifier = modifier.padding(innerPadding)
+    )
+  }
 }
 
 @Composable
@@ -26,11 +31,13 @@ private fun WellnessScreen(
   closeCodelab3: () -> Unit,
   wellnessViewModel: WellnessViewModel = viewModel()
 ) {
-  Column(modifier = modifier) {
+  Column(
+    modifier = modifier.fillMaxSize()
+  ) {
     BackHandler {
       closeCodelab3()
     }
-    StatefulWaterCounter(modifier)
+    StatefulWaterCounter()
 
     WellnessTasksList(
       list = wellnessViewModel.tasks,
@@ -48,6 +55,6 @@ private fun WellnessScreen(
 @Composable
 fun WellnessScreenPreview() {
   DesignSystemTheme {
-   Codelab3Feature()
+    Codelab3Feature()
   }
 }

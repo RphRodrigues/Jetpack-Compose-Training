@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
+
 package br.com.rstduio.composetraining
 
 import android.os.Bundle
@@ -5,6 +7,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,36 +23,35 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import br.com.rstudio.codelab1.feature.Codelab1Feature
 import br.com.rstudio.codelab2.feature.Codelab2Feature
 import br.com.rstudio.codelab3.feature.ui.wellness.Codelab3Feature
+import br.com.rstudio.codelab4.feature.Codelab4Feature
 import br.com.rstudio.designsystem.ui.theme.DesignSystemTheme
 
 class MainActivity : ComponentActivity() {
 
   private val viewModel: MainViewModel by viewModels()
 
-  @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     enableEdgeToEdge()
     setContent {
-      DesignSystemTheme {
-        val uiState by viewModel.uiState.collectAsState()
-        val size: WindowSizeClass = calculateWindowSizeClass(this)
+      val uiState by viewModel.uiState.collectAsState()
+      val size: WindowSizeClass = calculateWindowSizeClass(this)
 
-        Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-          ComposeTraining(
-            size = size,
-            uiState = uiState,
-            navigateTo = {
-              viewModel.navigateTo(it)
-            },
-            modifier = Modifier.padding(innerPadding)
-          )
-        }
+      DesignSystemTheme {
+        ComposeTraining(
+          size = size,
+          uiState = uiState,
+          navigateTo = {
+            viewModel.navigateTo(it)
+          },
+          modifier = Modifier
+        )
       }
     }
   }
@@ -82,47 +85,67 @@ fun ComposeTraining(
         navigateTo(MainState.Home)
       }
     )
-    else -> {
+
+    MainState.Codelab4 -> Codelab4Feature(
+      closeCodelab4 = {
+        navigateTo(MainState.Home)
+      },
+      modifier = modifier.fillMaxSize()
+    )
+
+    else -> HomeScreen(
+      navigateTo = navigateTo,
+      modifier = modifier
+    )
+  }
+}
+
+@Composable
+fun HomeScreen(
+  modifier: Modifier = Modifier,
+  navigateTo: (MainState) -> Unit
+) {
+  Scaffold { innerPadding ->
       Column(
+        verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier
           .fillMaxSize()
+          .padding(innerPadding)
           .padding(16.dp)
       ) {
         ListItem("Codelab 1", { navigateTo(MainState.Codelab1) })
         ListItem("Codelab 2", { navigateTo(MainState.Codelab2) })
         ListItem("Codelab 3", { navigateTo(MainState.Codelab3) })
-        ListItem("Codelab 4", { navigateTo(MainState.Home) })
+        ListItem("Codelab 4", { navigateTo(MainState.Codelab4) })
       }
-    }
   }
 }
 
 @Composable
 fun ListItem(
   title: String,
-  navigateToCodelab1: () -> Unit,
+  navigateTo: () -> Unit,
   modifier: Modifier = Modifier
 ) {
   Card(
-    onClick = navigateToCodelab1,
+    onClick = navigateTo,
     modifier = modifier.fillMaxWidth()
   ) {
 
     Text(
       text = title,
-      modifier = modifier.padding(9.dp)
+      modifier = modifier.padding(16.dp)
     )
   }
 }
 
-@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
-@Preview(showBackground = true)
+@PreviewLightDark()
 @Composable
-fun GreetingPreview() {
+fun ComposeTrainingPreview() {
   DesignSystemTheme {
     val expandedWindowSize = WindowSizeClass.calculateFromSize(
       size = androidx.compose.ui.unit.DpSize(400.dp, 1280.dp)
     )
-    ComposeTraining(size = expandedWindowSize, uiState = MainState.Codelab3)
+    ComposeTraining(size = expandedWindowSize, uiState = MainState.Home)
   }
 }
