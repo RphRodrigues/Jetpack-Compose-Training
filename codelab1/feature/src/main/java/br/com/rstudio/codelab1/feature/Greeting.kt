@@ -2,6 +2,7 @@ package br.com.rstudio.codelab1.feature
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.util.Log
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
@@ -33,10 +34,16 @@ import androidx.compose.ui.unit.dp
 import br.com.rstudio.designsystem.ui.theme.DesignSystemTheme
 
 @Composable
-fun Codelab1Feature(modifier: Modifier = Modifier) {
+fun Codelab1Feature(
+  modifier: Modifier = Modifier,
+  closeCodelab1: () -> Unit = {}
+) {
   var shouldShowOnboarding by rememberSaveable { mutableStateOf(true) }
 
   Surface(modifier) {
+    BackHandler {
+      closeCodelab1()
+    }
     if (shouldShowOnboarding) {
       OnboardingScreen(
         onContinueClick = { shouldShowOnboarding = false }
