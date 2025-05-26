@@ -6,4 +6,5 @@ sealed class MainState {
   object Codelab2 : MainState()
   object Codelab3 : MainState()
   object Codelab4 : MainState()
+  object Codelab5 : MainState()
 }

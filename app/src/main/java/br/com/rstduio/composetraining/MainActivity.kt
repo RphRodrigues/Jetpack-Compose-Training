@@ -7,7 +7,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,13 +22,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import br.com.rstudio.codelab1.feature.Codelab1Feature
 import br.com.rstudio.codelab2.feature.Codelab2Feature
 import br.com.rstudio.codelab3.feature.ui.wellness.Codelab3Feature
 import br.com.rstudio.codelab4.feature.Codelab4Feature
+import br.com.rstudio.codelab5.feature.Codelab5Feature
 import br.com.rstudio.designsystem.ui.theme.DesignSystemTheme
 
 class MainActivity : ComponentActivity() {
@@ -93,6 +92,13 @@ fun ComposeTraining(
       modifier = modifier.fillMaxSize()
     )
 
+    MainState.Codelab5 -> Codelab5Feature(
+      closeCodelab5 = {
+        navigateTo(MainState.Home)
+      },
+      modifier = modifier.fillMaxSize()
+    )
+
     else -> HomeScreen(
       navigateTo = navigateTo,
       modifier = modifier
@@ -117,6 +123,7 @@ fun HomeScreen(
         ListItem("Codelab 2", { navigateTo(MainState.Codelab2) })
         ListItem("Codelab 3", { navigateTo(MainState.Codelab3) })
         ListItem("Codelab 4", { navigateTo(MainState.Codelab4) })
+        ListItem("Codelab 5", { navigateTo(MainState.Codelab5) })
       }
   }
 }

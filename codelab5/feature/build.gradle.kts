@@ -1,23 +1,18 @@
-import org.gradle.internal.impldep.org.jsoup.nodes.Entities.EscapeMode.extended
-
 plugins {
-  alias(libs.plugins.android.application)
+  alias(libs.plugins.android.library)
   alias(libs.plugins.kotlin.android)
   alias(libs.plugins.kotlin.compose)
 }
 
 android {
-  namespace = "br.com.rstduio.composetraining"
+  namespace = "br.com.rstudio.codelab5.feature"
   compileSdk = 35
 
   defaultConfig {
-    applicationId = "br.com.rstduio.composetraining"
     minSdk = 21
-    targetSdk = 35
-    versionCode = 1
-    versionName = "1.0"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    consumerProguardFiles("consumer-rules.pro")
   }
 
   buildTypes {
@@ -39,16 +34,9 @@ android {
 }
 
 dependencies {
-
   implementation(project(":designSystem"))
-  implementation(project(":codelab1:feature"))
-  implementation(project(":codelab2:feature"))
-  implementation(project(":codelab3:feature"))
-  implementation(project(":codelab4:feature"))
-  implementation(project(":codelab5:feature"))
 
-  implementation(libs.androidx.core.ktx)
-  implementation(libs.androidx.lifecycle.runtime.ktx)
+  implementation(libs.androidx.lifecycle.viewmodel.compose)
   implementation(libs.androidx.activity.compose)
   implementation(platform(libs.androidx.compose.bom))
   implementation(libs.androidx.ui)
@@ -57,6 +45,7 @@ dependencies {
   implementation(libs.androidx.material3)
   implementation(libs.androidx.material.icons.extended)
   implementation(libs.androidx.material3.window.size.class1.android)
+
   testImplementation(libs.junit)
   androidTestImplementation(libs.androidx.junit)
   androidTestImplementation(libs.androidx.espresso.core)
