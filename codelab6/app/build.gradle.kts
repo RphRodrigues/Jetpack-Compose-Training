@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-  namespace = "br.com.rstudio.codelab5.app"
+  namespace = "br.com.rstudio.codelab6.app"
   compileSdk = 35
 
   defaultConfig {
-    applicationId = "br.com.rstudio.codelab5.app"
+    applicationId = "br.com.rstudio.codelab6.app"
     minSdk = 21
     targetSdk = 35
     versionCode = 1
@@ -38,7 +38,7 @@ android {
 
 dependencies {
   implementation(project(":designSystem"))
-  implementation(project(":codelab5:feature"))
+  implementation(project(":codelab6:feature"))
 
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.lifecycle.runtime.ktx)
