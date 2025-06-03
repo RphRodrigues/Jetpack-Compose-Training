@@ -19,6 +19,13 @@ dependencyResolutionManagement {
   }
 }
 
+buildCache {
+  local {
+    directory = File(rootDir, "build-cache")
+    removeUnusedEntriesAfterDays = 10
+  }
+}
+
 rootProject.name = "Compose Training"
 include(":app")
 include(":designSystem")

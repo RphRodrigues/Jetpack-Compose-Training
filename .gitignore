@@ -3,6 +3,7 @@
 /.idea/*
 .DS_Store
 /build
+/build-cache
 /captures
 .externalNativeBuild
 .cxx
