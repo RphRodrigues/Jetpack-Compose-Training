@@ -22,6 +22,10 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import br.com.rstudio.codelab6.feature.details.launchDetailsActivity
 import br.com.rstudio.codelab6.feature.ui.CraneTheme
 import androidx.core.view.WindowCompat
@@ -51,6 +55,12 @@ class Codelab6Activity : ComponentActivity() {
 @Composable
 private fun MainScreen(onExploreItemClicked: OnExploreItemClicked) {
     Surface(color = MaterialTheme.colors.primary) {
-        CraneHome(onExploreItemClicked = onExploreItemClicked)
+        var shouldShowLandingScreen by remember { mutableStateOf(true) }
+
+        if (shouldShowLandingScreen) {
+            LandingScreen(onTimeout = { shouldShowLandingScreen = false; println("After timeout") })
+        } else {
+            CraneHome(onExploreItemClicked = onExploreItemClicked)
+        }
     }
 }
